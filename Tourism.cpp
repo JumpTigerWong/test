@@ -1,6 +1,4 @@
-//
-// Created by 汪虎跃 on 2019-05-13.
-//
+
 
 #include "Tourism.h"
 #include "Graph.h"

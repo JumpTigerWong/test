@@ -79,9 +79,17 @@ void FindShortPath(){
         cout<<i<<"-"<<m_Graph.m_aVexs[i].name<<endl;
     }
     cout<<"请输入起点编号:";
+    cin>>begin;
     cout<<"请输入终点编号:";
-    cin>>begin>>end;
+    cin>>end;
+    getMinPath(begin,end,0,0);
+    printMinPath();
+}
 
+void DesignPath(){
+    cout<<"===== 铺设电路规划 ====="<<endl;
+    cout<<"在以下两个景点之间铺设电路:"<<endl;
+    FindMinTree();
 }
 
 int printMune(){

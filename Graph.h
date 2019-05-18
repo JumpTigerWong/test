@@ -42,6 +42,9 @@ struct Edge{
 
 void init();
 void dfs(int nVex, bool bVisited[], int nIndex,int arr[], PathList& pList);
+void getMinPath(int begin,int end,int curpoint,int total_lenghth);
+void printMinPath();
+void FindMinTree();
 string num_to_name(int number);
 //#endif //UNTITLED7_DATA_H
 // /Users/wanghuyue/Desktop/Vex.txt

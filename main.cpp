@@ -23,6 +23,7 @@ int main() {
                 FindShortPath();
                 break;
             case 5:
+                DesignPath();
                 break;
             default:
                 break;

@@ -8,4 +8,5 @@ void printM();
 void seekSinghtPoint();
 void DFSTraverse();
 void FindShortPath();
+void DesignPath();
 string num_to_name(int number);

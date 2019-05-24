@@ -1,31 +1,34 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-int main()
-{
+
+int main(){
     double x[5]={0.4,0.5,0.6,0.7,0.8};//x
     double lnx[5]={-0.9163,-0.6931,-0.5108,-0.3567,-0.2231};//y
-    double y=0;
-    double num;
-    int a;
-    cout<<"请输入样本个数:";
-    cin>>a;
-    cout<<"请输入一个值:";
+    int num;
+    double xi;
+    cout<<"请输入样本点个数:";
     cin>>num;
-    for(int k=0;k<a;k++){
-        double t=1;
-        for(int i=0;i<a;i++){
-            if(i==k){
-                if(i==k&&k==a-1){
-                    break;
+    cout<<"请输入一个值:";
+    cin>>xi;
+    double result=0;
+    for(int i=0;i<num;i++){
+        double formal=0;
+        for(int k=0;k<=i;k++){
+            double xn=1;
+            for(int j=0;j<=i;j++){
+                if(k!=j){
+                    xn*=(x[k]-x[j]);
                 }
-                i++;
-                t*=(num-x[i])/(x[k]-x[i]);
-            }else{
-                t*=(num-x[i])/(x[k]-x[i]);
             }
+            formal+=(lnx[k]/xn);
         }
-        y+=t*lnx[k];
+        double last=1;
+        for(int c=0;c<i;c++){
+            last*=(xi-x[c]);
+        }
+        result+=(formal*last);
     }
-    cout<<y<<endl;
+    cout<<result<<endl;
 }
+

@@ -1,34 +1,33 @@
 #include <iostream>
 #include <cmath>
+#include <algorithm>
 using namespace std;
 
-int main(){
-    double x[5]={0.4,0.5,0.6,0.7,0.8};//x
-    double lnx[5]={-0.9163,-0.6931,-0.5108,-0.3567,-0.2231};//y
-    int num;
-    double xi;
-    cout<<"请输入样本点个数:";
-    cin>>num;
-    cout<<"请输入一个值:";
-    cin>>xi;
-    double result=0;
-    for(int i=0;i<num;i++){
-        double formal=0;
-        for(int k=0;k<=i;k++){
-            double xn=1;
-            for(int j=0;j<=i;j++){
-                if(k!=j){
-                    xn*=(x[k]-x[j]);
-                }
-            }
-            formal+=(lnx[k]/xn);
-        }
-        double last=1;
-        for(int c=0;c<i;c++){
-            last*=(xi-x[c]);
-        }
-        result+=(formal*last);
+//double data[9]={1.0000000,0.9973978,0.9896158,0.9767267,0.9588510,0.9361556,0.9088516,0.8771925,0.8414709};
+double f(double x){
+    if(x==0) return 1;
+    else return (sin(x)/x);
+}
+
+double FuhuaTixing(int n,double a,double b){
+    double h = (b-a)/n;
+    double x = a;
+    double s = 0;
+    for(int k=0; k< n-1; k++){
+        x += h;
+        s += f(x);
     }
-    cout<<result<<endl;
+    double T = (f(a)+s*2+f(b))*h/2;
+    return T;
+}
+
+int main(){
+    cout<<"请输入积分区间(a,b)："<<endl;
+    double a;
+    double b;
+    cin>>a>>b;
+    cout<<"请输入等分份数n： "<<endl;
+    int n; cin>>n;
+    cout<<"由复化梯形公式球的结果："<<FuhuaTixing(n,a,b)<<endl;
 }
 

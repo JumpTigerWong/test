@@ -3,53 +3,29 @@
 #include <algorithm>
 using namespace std;
 
-double f(double x){
-    if(x==0) return 1;
-    else return (sin(x)/x);
+double f(double x,double y){
+    return y-2*x/y;
 }
-
 int main() {
-    double T[2]={0};
-    double S[2]={0};
-    double C[2]={0};
-    double R[2]={0,1000};
-    double a,b,e,h,x=0;
-    int Rk=0;
-    cin>>a>>b;
-    cin>>e;
-    h=b-a;
-    T[1]=(f(a)+f(b))*h/2;
-    int k=1;
-    while (1){
-        S[0]=0;
-        x=a+h/2;
-        while(x<b){
-            S[0]+=f(x);
-            x+=h;
-        }
-        T[1]=(T[0]+S[0]*h)/2;
-        S[1]=T[1]+(T[1]-T[0])/3;
-        h/=2;
-        T[0]=T[1];
-        S[0]=S[1];
-        C[0]=C[1];
-        R[0]=R[1];
-        if(k==1){
-            k++;
-            continue;
-        }
-        C[1]=S[1]+(S[1]-S[0])/15;
-        if(k==2){
-            k++;
-            continue;
-        }
-        R[1]=C[1]+(C[1]-C[0])/63;
-        if(k==3){
-            k++;
-            continue;
-        }
-        if(abs(R[1]-R[0])<e)break;
+    double x0,x1,y0,y1,h;
+    int N,n=1;
+    double yp,yc;
+    cin>>x0;
+    cin>>y0;
+    cin>>h;
+    cin>>N;
+    double y[50];
+    y[0]=1;
+    cout<<"xn      yn    "<<endl;
+    while(n<N){
+        x1=x0+h;
+        yp=y0+h*f(x0,y0);
+        yc=y0+h*f(x1,yp);
+        y1=(yp+yc)/2;
+        y[n]=y[n-1]+h*f(x1,y1);
+        x0=x1;
+        y0=y1;
+        n++;
+        cout<<x1<<" "<<y1<<endl;
     }
-    cout<<k<<endl;
-    cout<<R[1]<<endl;
 }
